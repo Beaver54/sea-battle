@@ -13,22 +13,15 @@
 
     <div class="playground">
 
-        <!-- Starting menu start -->
         <form class="main-menu" id="game-menu">
-            <h1>Морской бой</h1>
-            <div class="input-block">
-                <p>Ваше имя:</p>
-                <input type="text" id="player-input">
-                <p id="player-label" class="label"></p>
+            <h3 class="pb-4">Морской бой</h3>
+            <div class="mb-3">
+                <label for="player-input" class="form-label">Ваше имя:</label>
+                <input type="text" class="form-control" id="player-input">
+                <div id="player-label" class="form-text"></div>
             </div>
-            <div class="input-block">
-                <p>Имя вашего противника:</p>
-                <input type="text" id="computer-input">
-                <p id="computer-label" class="label"></p>
-            </div>
-            <button id="start-game" class="btn btn-primary start-button" type="button">Играть</button>
+            <button id="start-game" type="button" class="btn btn-primary start-button">Играть</button>
         </form>
-        <!-- Starting menu end -->
 
         <div class="battle-fields" id="fields" hidden>
             <!-- Player battle field start -->
@@ -40,14 +33,14 @@
 
             <!-- Computer battle field start -->
             <div class="float">
-                <div id="computer-name" class="name">Computer</div>
+                <div id="computer-name" class="name">Компьютер</div>
                 <div id="computer" class="battle-field computer-field"></div>
             </div>
             <!-- Computer battle field end -->
 
             <div class="clr"></div>
 
-            <div id="message" class="message"></div>
+            <div id="message" class="text-center mt-4 pt-2 alert" role="alert">Ваш ход..</div>
         </div>
 
     </div>

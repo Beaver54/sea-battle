@@ -17,7 +17,6 @@ import {Field} from './js/model';
     // Выводим введенные имена игрока и компьютера
     Field.getElementById('start-game').addEventListener("click", function () {
         Field.getFieldName(player, 'player-input', 'player-name', 'player-label');
-        Field.getFieldName(player, 'computer-input', 'computer-name', 'computer-label');
         Field.startGame(player, computer, 'game-menu', 'fields')
     });
 

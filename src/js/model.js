@@ -181,12 +181,14 @@ export class Field {
         },
 
         // Выводим сообщение в информационное окно
-        getMessageInnerText: function(messageID, innerText) {
-            Field.getElementById(`${messageID}`).innerHTML = `<p>${innerText}</p>`;
+        getMessageInnerText: function(messageID, innerText, className) {
+            Field.getElementById(`${messageID}`).innerHTML = `${innerText}`;
+            Field.getElementById(`${messageID}`).className = `text-center mt-4 alert ${className}`;
         },
 
         // Считаем нанесенный урон по кораблю
-        getDamage: function (x, y, obj, ship, messageID, shipDownMessage, getHitMessage, fieldID) {
+        getDamage: function (x, y, obj, ship, messageID, shipDownMessage, getHitMessage,
+                             fieldID, messageClassName) {
             
             ship.health--;
 
@@ -259,10 +261,10 @@ export class Field {
                 }
                 obj.firing.shots = [];
                 obj.firing.fire = false;
-                Field.mouseEvent.getMessageInnerText(messageID, shipDownMessage);
+                Field.mouseEvent.getMessageInnerText(messageID, shipDownMessage, messageClassName);
             } else {
                 obj.firing.fire = true;
-                Field.mouseEvent.getMessageInnerText(messageID, getHitMessage);
+                Field.mouseEvent.getMessageInnerText(messageID, getHitMessage, messageClassName);
             }
         },
 
@@ -272,7 +274,7 @@ export class Field {
         },
 
         // Перебираем координаты кораблей и проверяем попадание
-        getHit: function (x, y, obj, messageID, shipDownMessage, getHitMessage, fieldID) {
+        getHit: function (x, y, obj, messageID, shipDownMessage, getHitMessage, fieldID, messageClassName) {
             for (let key in obj.ships) {
 
                 if (obj.ships[key].position) {
@@ -300,7 +302,8 @@ export class Field {
                             `${messageID}`,
                             `${shipDownMessage}`,
                             `${getHitMessage}`,
-                            fieldID);
+                            fieldID,
+                            messageClassName);
                         return true;
                     }
                 } else {
@@ -328,7 +331,8 @@ export class Field {
                             `${messageID}`,
                             `${shipDownMessage}`,
                             `${getHitMessage}`,
-                            fieldID);
+                            fieldID,
+                            messageClassName);
                         return true;
                     }
                 }
@@ -348,7 +352,7 @@ export class Field {
             if (hitFlag === false ) {
                 Field.mouseEvent.displayCell(x, y, fieldID, 'dot');
                 if (playerTurn) {
-                    Field.mouseEvent.getMessageInnerText(messageID, 'Ход компьютера');
+                    Field.mouseEvent.getMessageInnerText(messageID, 'Ход компьютера', 'alert-light');
                     setTimeout(Field.mouseEvent.getComputerShot,
                         500,
                         playerObj,
@@ -360,7 +364,7 @@ export class Field {
             } else {
                 Field.mouseEvent.displayCell(x, y, fieldID, 'hit');
                 if (computerTurn) {
-                    Field.mouseEvent.getMessageInnerText(messageID, 'Ход компьютера');
+                    Field.mouseEvent.getMessageInnerText(messageID, 'Ход компьютера', 'alert-light');
                     setTimeout(Field.mouseEvent.getComputerShot,
                         500,
                         playerObj,
@@ -373,21 +377,21 @@ export class Field {
         },
 
         checkTheHit: function(x, y, obj, player, messageID, shipDownMessage, getHitMessage, fieldID,
-                              computerID, playerID, endGameMessage, playerTurn, computerTurn) {
+                              computerID, playerID, endGameMessage, playerTurn, computerTurn, messageClassName, endGameMessageClassName) {
 
             // Создаем флаг, который будет сигнализировать нам о попадании
-            let hitFlag = Field.mouseEvent.getHit(x, y, obj, messageID, shipDownMessage, getHitMessage, fieldID);
+            let hitFlag = Field.mouseEvent.getHit(x, y, obj, messageID, shipDownMessage, getHitMessage, fieldID, messageClassName);
 
             Field.mouseEvent.displayOnField(x, y, hitFlag, fieldID, obj, player, playerTurn, computerTurn, messageID, computerID, playerID);
 
             if (computerTurn && !hitFlag) {
-                Field.mouseEvent.getMessageInnerText(messageID, 'Ваш ход');
+                Field.mouseEvent.getMessageInnerText(messageID, 'Ваш ход', 'alert-light');
             }
 
             // Проверяем totalHealth, если он равен 0, то заканчиваем игру
             if (obj.totalHealth === 0) {
                 Field.getElementById(`${computerID}`).style = 'pointer-events:none;';
-                Field.mouseEvent.getMessageInnerText(messageID, endGameMessage);
+                Field.mouseEvent.getMessageInnerText(messageID, endGameMessage, endGameMessageClassName);
             }
 
         },
@@ -434,7 +438,9 @@ export class Field {
                         'player',
                         computerID, playerID, loseMessage,
                         false,
-                        true);
+                        true,
+                        'alert-danger',
+                        'alert-dark');
 
                 }
 
@@ -476,7 +482,9 @@ export class Field {
                         'player',
                         computerID, playerID, loseMessage,
                         false,
-                        true);
+                        true,
+                        'alert-danger',
+                        'alert-dark');
                 }
 
             } else {
@@ -506,7 +514,9 @@ export class Field {
                     'player',
                     computerID, playerID, loseMessage,
                     false,
-                    true);
+                    true,
+                    'alert-danger',
+                    'alert-dark');
 
             }
         },
@@ -532,7 +542,9 @@ export class Field {
                     'computer',
                     computerID, playerID, winnerMessage,
                     true,
-                    false);
+                    false,
+                    'alert-success',
+                    'alert-info');
             }
 
         },

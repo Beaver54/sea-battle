@@ -1,0 +1,33 @@
+.initial-ships{
+  list-style:         none;
+}
+
+.ship{
+  position:           absolute;
+  background-image:   url(/src/images/deck.png);
+}
+
+.fourdeck{
+  width:              120px;
+  height:             30px;
+}
+
+.tripledeck{
+  width:              90px;
+  height:             30px;
+}
+
+.doubledeck{
+  width:              60px;
+  height:             30px;
+}
+
+.singledeck{
+  width:              30px;
+  height:             30px;
+}
+
+.vertical{
+  transform:          rotate(90deg);
+  transform-origin:   14.5px 14.5px;
+}

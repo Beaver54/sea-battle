@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Морской бой</title>
+</head>
+<body>
+
+<div class="content">
+
+    <div class="playground">
+
+        <!-- Starting menu start -->
+        <form class="main-menu" id="game-menu">
+            <h1>Морской бой</h1>
+            <div class="input-block">
+                <p>Ваше имя:</p>
+                <input type="text" id="player-input">
+                <p id="player-label" class="label"></p>
+            </div>
+            <div class="input-block">
+                <p>Имя вашего противника:</p>
+                <input type="text" id="computer-input">
+                <p id="computer-label" class="label"></p>
+            </div>
+            <button id="start-game" class="btn btn-primary start-button" type="button">Играть</button>
+        </form>
+        <!-- Starting menu end -->
+
+        <div class="battle-fields" id="fields" hidden>
+            <!-- Player battle field start -->
+            <div class="float">
+                <div id="player-name" class="name">Player</div>
+                <div id="player" class="battle-field player-field"></div>
+            </div>
+            <!-- Player battle field end -->
+
+            <!-- Computer battle field start -->
+            <div class="float">
+                <div id="computer-name" class="name">Computer</div>
+                <div id="computer" class="battle-field computer-field"></div>
+            </div>
+            <!-- Computer battle field end -->
+
+            <div class="clr"></div>
+
+            <div id="message" class="message"></div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
